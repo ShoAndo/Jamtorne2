@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>866042139564-cbqaj13csfqr3i31k9cgjt06hdihjmfr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.866042139564-cbqaj13csfqr3i31k9cgjt06hdihjmfr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCfzxdabl2bxQdpHX-n6qrzGti9lSIjO98</string>
+	<key>GCM_SENDER_ID</key>
+	<string>866042139564</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.practice.Jamtorne</string>
+	<key>PROJECT_ID</key>
+	<string>jamtorne</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jamtorne.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:866042139564:ios:9e7597c979d956f3</string>
+	<key>DATABASE_URL</key>
+	<string>https://jamtorne.firebaseio.com</string>
+</dict>
+</plist>
