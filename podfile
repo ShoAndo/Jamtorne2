@@ -9,4 +9,7 @@ target 'Jamtorne' do
 	pod 'Floaty', '~> 4.2.0'
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Firestore’
+	pod 'Firebase/Core'
+	pod 'Firebase/Firestore'
+	pod 'FirebaseUI/Google'
 end

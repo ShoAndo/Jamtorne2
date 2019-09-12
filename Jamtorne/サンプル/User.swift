@@ -10,19 +10,19 @@ import UIKit
 
 struct User {
     
-    var id: String
+    var documentID: String
     var fullName: String
     var email: String
     var profileImage: UIImage!
-    var profileHeaderImage: UIImage!
-    var interestId = [String]()
+//    var profileHeaderImage: UIImage!
+//    var interestId = [String]()
     
-    init(id: String, fullName: String, email: String, profileImage: UIImage, headerImage: UIImage!) {
-        self.id = id
+    init(documentID: String, fullName: String, email: String, profileImage: UIImage) {
+        self.documentID = documentID
         self.fullName = fullName
         self.email = email
         self.profileImage = profileImage
-        self.profileHeaderImage = headerImage
+//        self.profileHeaderImage = headerImage
     }
     
     // MARK: - Private
@@ -30,8 +30,8 @@ struct User {
     static func allUsers() -> [User]
     {
         return [
-            User(id: "f1", fullName: "Steave Jobs", email: "steave@info.com", profileImage: UIImage(named: "f1")!, headerImage: UIImage(named: "f1")!),
-            User(id: "f2", fullName: "Mark", email: "mark@info.com", profileImage: UIImage(named: "f2")!, headerImage: UIImage(named: "f2"))
+            User(documentID: "f1", fullName: "Steave Jobs", email: "steave@info.com", profileImage: UIImage(named: "f1")!),
+            User(documentID: "f2", fullName: "Mark", email: "mark@info.com", profileImage: UIImage(named: "f2")!)
         ]
     }
     

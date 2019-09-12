@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PostTableTableViewCell", bundle: nil), forCellReuseIdentifier: "PostCell")
@@ -37,7 +38,9 @@ class ViewController: UIViewController {
     
     private func createButton(){
         let floaty = Floaty()
-        floaty.addItem("post", icon: UIImage(named: "posticon2")!, handler: {item in
+        floaty.paddingX = CGFloat(8)
+        floaty.paddingY = CGFloat(50)
+        floaty.addItem("新規投稿", icon: UIImage(named: "Jmtorne-post")!, handler: {item in
             self.performSegue(withIdentifier: "toNewPost", sender: nil)
         })
         self.view.addSubview(floaty)
