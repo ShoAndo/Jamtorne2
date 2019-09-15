@@ -24,7 +24,19 @@ class NewCommentViewController: UIViewController {
         
         textView.text = ""
         textView.becomeFirstResponder()
-        userProfileImage.image! = user.profileImage
+        let profileURL = URL(string: post.user.profileImage)
+        var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
+        do{
+            let photoData = try Data(contentsOf: profileURL!)
+            photoImage = UIImage(data: photoData)!
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        userProfileImage.image! = photoImage
+      
+        
+//        userProfileImage.image! = user.profileImage
         userName.text! = user.fullName
         
         userProfileImage.layer.cornerRadius = userProfileImage.layer.bounds.width / 2

@@ -7,24 +7,61 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
+    
+    var post: [Post] = []
+    
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var fullName: UILabel!
+    @IBOutlet weak var postCount: UIButton!
+    @IBOutlet weak var followCount: UIButton!
+    @IBOutlet weak var followerCount: UIButton!
+    @IBOutlet weak var DMButton: UIButton!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        profileImage.layer.cornerRadius = profileImage.layer.bounds.width/2
+        profileImage.clipsToBounds = true
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+      
+        let user = Auth.auth().currentUser
+        if let user = user {
+          
+            let fullName = user.displayName!
+            
+            let photoURL = user.photoURL!
+            
+            var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
+            do{
+                let photoData = try Data(contentsOf: photoURL)
+                photoImage = UIImage(data: photoData)!
+                
+            }catch{
+                print(error.localizedDescription)
+            }
+            profileImage.image! = photoImage
+            self.fullName.text! = fullName
+        }
+       
+        
+        
+        
+        
+            
+    }
+    @IBAction func didClickDMButton(_ sender: Any) {
+    }
+    @IBAction func didClickFollowButton(_ sender: Any) {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
 }

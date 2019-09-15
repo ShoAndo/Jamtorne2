@@ -30,7 +30,7 @@ class ViewController: UIViewController {
        
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .white
-        title = "Jamtorne"
+        title = "タイムライン"
         
         createButton()
         

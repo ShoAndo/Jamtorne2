@@ -22,7 +22,17 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     func updateUI(){
-        userProfileImage.image! = comment.user.profileImage
+//        userProfileImage.image! = comment.user.profileImage
+        let profileURL = URL(string: comment.user.profileImage)
+        var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
+        do{
+            let photoData = try Data(contentsOf: profileURL!)
+            photoImage = UIImage(data: photoData)!
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        userProfileImage.image! = photoImage
         userNameLabel.text! = comment.user.fullName
         createdAt.text! = comment.createdAt
         commentText.text! = comment.commentText

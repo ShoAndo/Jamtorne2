@@ -75,9 +75,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         let album = albums![indexPath.row]
         let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumViewController") as! AlbumViewController
         vc.albumID = album.id
-        print(album.id)
+        print(album.id as Any)
        self.present(vc, animated: true, completion: nil)
-        performSegue(withIdentifier: "AlbumViewController", sender: album.id)
+//        performSegue(withIdentifier: "AlbumViewController", sender: album.id)
         
     }
     

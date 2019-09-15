@@ -18,6 +18,7 @@ class AlbumViewController: UIViewController {
     
     var albumID: String!
     var album: Resource?
+    var albums: [Resource]?
     
     var canMusicCatalogPlayback = false
     override func viewDidLoad() {
@@ -71,6 +72,12 @@ extension AlbumViewController:UITableViewDataSource,UITableViewDelegate{
                     cell.musicImage.image = image
                 }
             }
+         
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "toNewPost") as! NewPostViewController
+//            vc.songImage = (album!.attributes?.artwork?.imageURL(width: 220, height: 220)!.absoluteString)!
+//            print(vc.songImage as Any)
+            
+        
             return cell
         }
         
@@ -90,8 +97,26 @@ extension AlbumViewController:UITableViewDataSource,UITableViewDelegate{
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
   //      tableView.deselectRow(at: indexPath, animated: true)
-        guard indexPath.section == 1 else { return }
-        performSegue(withIdentifier: "toNewPost", sender: self)
+        if indexPath.section == 0 {
+            return
+        }else{
+            let tracks = album?.relationships?.tracks
+            let track = tracks![indexPath.row]
+            let vc = storyboard?.instantiateViewController(withIdentifier: "toNewPost") as! NewPostViewController
+            vc.musicName = (track.attributes?.name)!
+            print(track.attributes?.name! as Any)
+            vc.performerName = (track.attributes?.artistName)!
+            print(track.attributes?.artistName! as Any)
+            vc.year = (track.attributes?.releaseDate)!
+            print(track.attributes?.releaseDate! as Any)
+            vc.songImage = (album!.attributes?.artwork?.imageURL(width: 150, height: 150)!.absoluteString)!
+            self.present(vc, animated: true, completion: nil)
+            
+            
+           
+        }
+        
+//        performSegue(withIdentifier: "toNewPost", sender: album.id)
         
     }
 }

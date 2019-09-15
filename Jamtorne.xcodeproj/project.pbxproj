@@ -40,7 +40,6 @@
 		9FFB61EC23266ACA0056DEF8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61EB23266ACA0056DEF8 /* HomeViewController.swift */; };
 		9FFB61EE2326719D0056DEF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FFB61ED2326719D0056DEF8 /* GoogleService-Info.plist */; };
 		9FFB61F0232899270056DEF8 /* JamtorneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61EF232899260056DEF8 /* JamtorneViewController.swift */; };
-		9FFB61F223294B150056DEF8 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61F123294B150056DEF8 /* Users.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +80,6 @@
 		9FFB61EB23266ACA0056DEF8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9FFB61ED2326719D0056DEF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FFB61EF232899260056DEF8 /* JamtorneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamtorneViewController.swift; sourceTree = "<group>"; };
-		9FFB61F123294B150056DEF8 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +169,6 @@
 				9F9B169B231EEC52009F30F5 /* Comment.swift */,
 				9F46C4DB230D8F650005DCEA /* Post.swift */,
 				9F46C4DD230D8FFA0005DCEA /* User.swift */,
-				9FFB61F123294B150056DEF8 /* Users.swift */,
 			);
 			name = SampleData;
 			path = "サンプル";
@@ -367,7 +364,6 @@
 				9F9B169C231EEC53009F30F5 /* Comment.swift in Sources */,
 				9FBC689A2315781300DC4EBE /* Resource.swift in Sources */,
 				9FBC689B2315781300DC4EBE /* Relationships.swift in Sources */,
-				9FFB61F223294B150056DEF8 /* Users.swift in Sources */,
 				9FBC68762315628C00DC4EBE /* NewPostViewController.swift in Sources */,
 				9FBC68972315781300DC4EBE /* APIClient.swift in Sources */,
 			);

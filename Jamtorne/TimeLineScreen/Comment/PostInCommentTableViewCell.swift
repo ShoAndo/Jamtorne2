@@ -28,11 +28,29 @@ class PostInCommentTableViewCell: UITableViewCell {
     
     
     func updateUI(){
-        
-        userProfileImage.image! = post.user.profileImage
+        let profileURL = URL(string: post.user.profileImage)
+        var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
+        do{
+            let photoData = try Data(contentsOf: profileURL!)
+            photoImage = UIImage(data: photoData)!
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        userProfileImage.image! = photoImage
+//        userProfileImage.image! = post.user.profileImage
         userName.text! = post.user.fullName
         createdAt.text! = post.createdAt
-        musicImage.image! = post.musicImage
+        
+        let musicImageURL = URL(string: post.musicImage)
+        var songImage: UIImage = UIImage(named:"musicImage")!
+        do{
+            let musicData = try Data(contentsOf: musicImageURL!)
+            songImage = UIImage(data: musicData)!
+        }catch{
+            print(error.localizedDescription)
+        }
+        musicImage.image! = songImage
         artistName.text! = post.artistName
         songName.text! = post.songName
         postText.text! = post.postText
