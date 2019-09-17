@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class PostInCommentTableViewCell: UITableViewCell {
 
@@ -19,16 +21,22 @@ class PostInCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     private var currentUserDidLike: Bool = false
-    
+    var user = Auth.auth().currentUser
     var post: Post!{
         didSet{
             updateUI()
         }
     }
     
+    lazy var dateformatter: DateFormatter = {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy/MM/dd"
+        return dateformatter
+    }()
+    
     
     func updateUI(){
-        let profileURL = URL(string: post.user.profileImage)
+        let profileURL = URL(string: (user?.photoURL?.absoluteString)!)
         var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
         do{
             let photoData = try Data(contentsOf: profileURL!)
@@ -39,8 +47,8 @@ class PostInCommentTableViewCell: UITableViewCell {
         }
         userProfileImage.image! = photoImage
 //        userProfileImage.image! = post.user.profileImage
-        userName.text! = post.user.fullName
-        createdAt.text! = post.createdAt
+        userName.text! = (user?.displayName)!
+        createdAt.text! = dateformatter.string(from: post.createdAt!.dateValue())
         
         let musicImageURL = URL(string: post.musicImage)
         var songImage: UIImage = UIImage(named:"musicImage")!

@@ -28,7 +28,7 @@ class Comment {
     }
     
     // ダミーデータ
-    static func allComments() -> [Comment]
+/*    static func allComments() -> [Comment]
     {
         return [
             Comment(documentId: "c1", createdAt: "May 21", postId: "f1", author: User.allUsers()[0], commentText: "この写真がすごいお気に入りです！綺麗ですね！！！", numberOfLikes: 21),
@@ -38,5 +38,6 @@ class Comment {
             Comment(documentId: "c5", createdAt: "May 21", postId: "f1", author: User.allUsers()[0], commentText: "この写真がすごいお気に入りです！綺麗ですね！！！", numberOfLikes: 21)
         ]
     }
+*/
     
 }

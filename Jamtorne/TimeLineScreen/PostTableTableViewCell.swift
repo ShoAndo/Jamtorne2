@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 protocol PostTableTableViewCellDelegate {
     func didClickCommentButton(post: Post)
@@ -29,12 +31,18 @@ class PostTableTableViewCell: UITableViewCell {
     private var currentUserDidLike: Bool = false
     
     var delegate: PostTableTableViewCellDelegate!
-    
+    var user = Auth.auth().currentUser
     var post: Post!{
         didSet{
             updateUI()
         }
     }
+    
+    lazy var dateformatter: DateFormatter = {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy/MM/dd"
+        return dateformatter
+    }()
     
     private func updateUI(){
         userProfileImage.layer.cornerRadius = userProfileImage.layer.bounds.width/2
@@ -43,20 +51,19 @@ class PostTableTableViewCell: UITableViewCell {
         userProfileImage.clipsToBounds = true
         musicImage.clipsToBounds = true
         
-//        userProfileImage.image! = post.user.profileImage
-        let profileURL = URL(string: post.user.profileImage)
+        let profileURL = URL(string: (user?.photoURL!.absoluteString)!)
         var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
         do{
             let photoData = try Data(contentsOf: profileURL!)
             photoImage = UIImage(data: photoData)!
-            
+
         }catch{
             print(error.localizedDescription)
         }
         userProfileImage.image! = photoImage
-        userName.text! = post.user.fullName
-        createdAt.text! = post.createdAt
-//        musicImage.image! = post.musicImage
+        userName.text! = (user?.displayName)!
+        createdAt.text! = dateformatter.string(from: post.createdAt!.dateValue())
+
         let musicImageURL = URL(string: post.musicImage)
         var songImage: UIImage = UIImage(named:"musicImage")!
         do{

@@ -11,8 +11,8 @@ import Floaty
 
 class CommentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    var comment = Comment.allComments()
+ /*
+//    var comment = Comment.allComments()
     var post: Post!
     
     override func viewDidLoad() {
@@ -65,6 +65,7 @@ extension CommentViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
         }
     }
-    
+ 
+ */
     
 }

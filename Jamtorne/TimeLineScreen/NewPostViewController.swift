@@ -29,12 +29,14 @@ class NewPostViewController: UIViewController {
     var trackID: String!
     var track: Resource?
     var canMusicCatalogPlayback = false
-    var documentId = ""
     var musicName:String?
     var performerName: String?
     var year: String?
     var songImage: String?
-     let cloudServiceController = SKCloudServiceController()
+    var postDocumentId = ""
+    let cloudServiceController = SKCloudServiceController()
+    var post:[Post] = []
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +44,65 @@ class NewPostViewController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.layer.bounds.width/2
         profileImage.clipsToBounds = true
         textView.text = ""
+        
+      
+        
+        let user = Auth.auth().currentUser
+        
+//        db.collection("User").getDocuments { (QuerySnapshot, error) in
+//            if error == nil, let snapshot = QuerySnapshot{
+//                for document in snapshot.documents{
+//                    let data = document.data()
+//                    let user = User(documentID: user!.uid, fullName: data["fullName"] as! String, email: data["email"] as! String, profileImage: data["profiliImage"] as! String)
+//                    self.user = user
+//                }
+//            }
+//
+//        }
+ 
+ 
+ 
+        //        変数だから小文字にしておく
+//        db.collection("Post").addSnapshotListener { (querySnapshot, error) in
+//            //            querySnapshotの中にはroomに中の全データが入っている
+//            guard let documents = querySnapshot?.documents else{
+//                //                roomの中に何もない場合、処理を中断
+//                return
+//            }
+//            //            登録をしているから一回登録するだけでオッケー
+//            //            全件のデータをroomの中に入れ直している
+//            //            扱いやすくするため
+//            //            変数documentsにroomの全データがあるので
+//            //            それを元に配列を作成し、画面を更新する
+//            //            documentはnameやcreatedが入っている
+//            //            .get()で値取得  any が入る　キャストする realmでも？
+//            //            Roomを新しく作っている
+//            //            documentIDはよくわからん文字列のやつ
+//            var results: [Post] = []
+//            for document in documents {
+//                let artistName = document.get("artistName") as! String
+//                let createdAt = document.get("createdAt") as! String
+//                let interesId = document.get("interestId") as! String
+//                let musicImage = document.get("musicImage") as! String
+//                let numberOfLikes = document.get("numberOfLikes") as! Int
+//                let postText = document.get("postText") as! String
+//                let songName = document.get("songName") as! String
+//                let uid = document.get("uid") as! String
+//                let userDidLike = document.get("userDidLike") as! Bool
+//                let documentId = document.documentID
+//                self.postDocumentId = documentId
+//
+//                let post = Post(documentId: documentId, author: self.user, uid: uid, createdAt: createdAt, musicImage: musicImage, artistName: artistName, songName: songName, postText: postText, numberOfLikes: numberOfLikes, interestId: interesId, userDidLike: userDidLike)
+//                results.append(post)
+//
+//            }
+//            //           変数roomを書き換える
+//            self.post = results
+//        }
 //        キーボードを最初から出しておく
         textView.becomeFirstResponder()
+      
 //         prepare()
-        let user = Auth.auth().currentUser
         if let user = user {
             
             let fullName = user.displayName!
@@ -69,13 +126,11 @@ class NewPostViewController: UIViewController {
         print(performerName as Any)
         print(year as Any)
         print(songImage as Any)
-        print(documentId)
         let musicImageUrl = URL(string: songImage!)!
         var songImage:UIImage!
         do{
             let musicImageData = try Data(contentsOf: musicImageUrl)
             songImage = UIImage(data: musicImageData)!
-            print(songImage)
             musicImage.image! = songImage
         }catch{
             
@@ -99,9 +154,6 @@ class NewPostViewController: UIViewController {
         }
     }
  
-
-    
-    
     override func viewWillAppear(_ animated: Bool) {
        prepare()
         super.viewWillAppear(animated)
@@ -168,11 +220,11 @@ class NewPostViewController: UIViewController {
             
             let profileName = user.displayName!
             let uid = user.uid
-            let photoURL = user.photoURL!
             
+            let photoURL = URL(string: songImage!)
             var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
             do{
-                let photoData = try Data(contentsOf: photoURL)
+                let photoData = try Data(contentsOf: photoURL!)
                 photoImage = UIImage(data: photoData)!
                 
             }catch{
@@ -187,17 +239,29 @@ class NewPostViewController: UIViewController {
             let numberOfLikes = 0
             let interestedId = "i1"
         
-            db.collection("User").document(documentId).collection("Post").addDocument(data: ["uid": uid, "musicImage":photoImage,"artistName":artistName as Any,"songName":songName as Any,"postText":postText as Any,"numberOfLikes":numberOfLikes,"interestId":interestedId,"userDidLike":true,"createdAt": FieldValue.serverTimestamp()]){ err in
+            db.collection("Post").addDocument(data: ["uid": uid, "musicImage":photoURL!.absoluteString,"artistName":artistName as Any,"songName":songName as Any,"postText":postText as Any,"numberOfLikes":numberOfLikes,"interestId":interestedId,"userDidLike":true,"createdAt": Timestamp()]){ err in
             if let err = err{
                 print("投稿に失敗しました")
                 print(err)
             } else {
                 print("投稿しました")
+//                self.performSegue(withIdentifier: "toTimeLine", sender: nil)
+                DispatchQueue.main.async {
+                    let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "maintab") as! UITabBarController
+                    self.present(secondViewController, animated: true, completion: nil)
+                }
+                
             }
             }
         }
         
     }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toTimeLine"{
+//            let vc = segue.destination as! ViewController
+//            vc.postDocumentId = sender as! String
+//        }
+//    }
     
     @IBAction func didClickBackButton(_ sender: Any) {
     }
@@ -208,7 +272,7 @@ class NewPostViewController: UIViewController {
         }else {
             createNewPost()
             textView.resignFirstResponder()
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
             
         }
     }

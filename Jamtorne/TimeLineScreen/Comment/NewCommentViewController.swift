@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseFirestore
 class NewCommentViewController: UIViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -16,15 +17,14 @@ class NewCommentViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     var post: Post!
-    var user = User.allUsers()[0]
-    
-
+    var user = Auth.auth().currentUser
+//    var user = User.allUsers()[0]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         textView.text = ""
         textView.becomeFirstResponder()
-        let profileURL = URL(string: post.user.profileImage)
+        let profileURL = URL(string: (user?.photoURL!.absoluteString)!)
         var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
         do{
             let photoData = try Data(contentsOf: profileURL!)
@@ -34,16 +34,10 @@ class NewCommentViewController: UIViewController {
             print(error.localizedDescription)
         }
         userProfileImage.image! = photoImage
-      
-        
 //        userProfileImage.image! = user.profileImage
-        userName.text! = user.fullName
-        
+//        userName.text! = user.fullName
         userProfileImage.layer.cornerRadius = userProfileImage.layer.bounds.width / 2
-        
       
-        
-
     }
     
     @IBAction func didClickBackButton(_ sender: UIBarButtonItem) {

@@ -14,48 +14,52 @@ import FirebaseFirestore
 
 class LoginViewController: UIViewController {
 
-   var documentID = ""
+//   var documentID = ""
   
-    var users: [User] = []
+//    var users: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.uiDelegate = self
         GIDSignIn.sharedInstance()?.delegate = self
         
-        let db = Firestore.firestore()
-        
-        //        変数だから小文字にしておく
-        db.collection("User").addSnapshotListener { (querySnapshot, error) in
-            //            querySnapshotの中にはroomに中の全データが入っている
-            guard let documents = querySnapshot?.documents else{
-                //                roomの中に何もない場合、処理を中断
-                return
-            }
-            //            登録をしているから一回登録するだけでオッケー
-            //            全件のデータをroomの中に入れ直している
-            //            扱いやすくするため
-            //            変数documentsにroomの全データがあるので
-            //            それを元に配列を作成し、画面を更新する
-            //            documentはnameやcreatedが入っている
-            //            .get()で値取得  any が入る　キャストする realmでも？
-            //            Roomを新しく作っている
-            //            documentIDはよくわからん文字列のやつ
-            var results: [User] = []
-            for document in documents {
-                let fullName = document.get("fullName") as! String
-                let email = document.get("email") as! String
-                let profileImage = document.get("profileImage")as! String
-                let documentID = document.documentID
-                
-                let user = User(documentID: documentID, fullName: fullName, email: email, profileImage: profileImage)
-              
-                results.append(user)
-                
-            }
-            //           変数roomを書き換える
-            self.users = results
-        }
+//        let db = Firestore.firestore()
+//
+//        //        変数だから小文字にしておく
+//        db.collection("User").addSnapshotListener { (querySnapshot, error) in
+//            //            querySnapshotの中にはroomに中の全データが入っている
+//            guard let documents = querySnapshot?.documents else{
+//                //                roomの中に何もない場合、処理を中断
+//                return
+//            }
+//            //            登録をしているから一回登録するだけでオッケー
+//            //            全件のデータをroomの中に入れ直している
+//            //            扱いやすくするため
+//            //            変数documentsにroomの全データがあるので
+//            //            それを元に配列を作成し、画面を更新する
+//            //            documentはnameやcreatedが入っている
+//            //            .get()で値取得  any が入る　キャストする realmでも？
+//            //            Roomを新しく作っている
+//            //            documentIDはよくわからん文字列のやつ
+//            var results: [User] = []
+//            for document in documents {
+//                let fullName = document.get("fullName") as! String
+//                let email = document.get("email") as! String
+//                let profileImage = document.get("profileImage")as! String
+//                self.documentID = document.documentID
+//                UserDefaults.standard.set(self.documentID, forKey: "documentId")
+////                let vc = self.storyboard?.instantiateViewController(withIdentifier: "toNewPost") as! NewPostViewController
+////                vc.documentId = documentID
+////                let VC = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+////                VC.documentId = documentID
+//                let user = User(documentID: self.documentID, fullName: fullName, email: email, profileImage: profileImage)
+//
+//                results.append(user)
+//
+//            }
+//            //           変数roomを書き換える
+//            self.users = results
+//        }
      
    
         
@@ -64,14 +68,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            // ...
-       
-            performSegue(withIdentifier: "toTimeLine", sender: nil)
-        } else {
-            return
-        }
+    
     }
     
     
@@ -108,45 +105,36 @@ extension LoginViewController:GIDSignInDelegate, GIDSignInUIDelegate{
                     // The user's ID, unique to the Firebase project.
                     // Do NOT use this value to authenticate with your backend server,
                     // if you have one. Use getTokenWithCompletion:completion: instead.
-                
                     let fullName = user.displayName!
                     let email = user.email!
                     let photoURL = user.photoURL!
-                   
-                   
                     let db = Firestore.firestore()
-                    
-                    db.collection("User").addDocument(data: ["fullName":fullName,"email": email, "profileImage":photoURL.absoluteString, "createdAt": FieldValue.serverTimestamp()]) { err in
+                    db.collection("User").document(user.uid).setData([
+                        "fullName":fullName,
+                        "email": email,
+                        "profileImage":photoURL.absoluteString,
+                        "createdAt": FieldValue.serverTimestamp(),
+                        "uid": user.uid
+                    ]) { err in
                         if let err = err{
                             print("ユーザーの作成に失敗しました")
                             print(err)
                         } else {
                             print("ユーザーを作成しました：\(fullName)")
-               
                         }
-                        
                     }
-   
                 }
-              
-                //                selfは自分のクラスを指している
-                //                Authの中から探そうとする
+               
+            }
+            DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toTimeLine", sender: nil)
             }
-            
-            
-            
         }
-        
-        
-        
-        
     }
-    
-    
-    
-    
 }
+
+    
+
 
 
 
