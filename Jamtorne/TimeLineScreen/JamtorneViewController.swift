@@ -14,12 +14,9 @@ import FirebaseFirestore
 class JamtorneViewController: UIViewController {
     
     var users:[User] = []
-
     override func viewDidLoad(){
         super.viewDidLoad()
-        
         if Auth.auth().currentUser != nil {
-            
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "toTimeLine", sender: nil)
             }

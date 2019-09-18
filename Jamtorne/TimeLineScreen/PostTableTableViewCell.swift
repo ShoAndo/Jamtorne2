@@ -13,10 +13,7 @@ import FirebaseFirestore
 protocol PostTableTableViewCellDelegate {
     func didClickCommentButton(post: Post)
 }
-
-
 class PostTableTableViewCell: UITableViewCell {
-    
     
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -27,9 +24,7 @@ class PostTableTableViewCell: UITableViewCell {
     @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
-    
     private var currentUserDidLike: Bool = false
-    
     var delegate: PostTableTableViewCellDelegate!
     var user = Auth.auth().currentUser
     var post: Post!{
@@ -50,13 +45,11 @@ class PostTableTableViewCell: UITableViewCell {
 //        画像の変更を許可
         userProfileImage.clipsToBounds = true
         musicImage.clipsToBounds = true
-        
         let profileURL = URL(string: (user?.photoURL!.absoluteString)!)
         var photoImage: UIImage = UIImage(named: "defaultProfileImage")!
         do{
             let photoData = try Data(contentsOf: profileURL!)
             photoImage = UIImage(data: photoData)!
-
         }catch{
             print(error.localizedDescription)
         }

@@ -23,8 +23,6 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         prepare()
-        
-        
     }
     func prepare() {
         title = "Search"
@@ -42,18 +40,14 @@ class SearchViewController: UIViewController {
             print("Authorization status is authorized")
         }
     }
-    
-
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     
-  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let albums = albums else { return 0 }
         return albums.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let album = albums![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -67,7 +61,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.setNeedsLayout()
             }
         }
-        
         return cell
     }
     
@@ -77,12 +70,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         vc.albumID = album.id
         print(album.id as Any)
        self.present(vc, animated: true, completion: nil)
-//        performSegue(withIdentifier: "AlbumViewController", sender: album.id)
-        
     }
-    
-    
-    
 }
 
 extension SearchViewController: UISearchResultsUpdating {
@@ -94,7 +82,6 @@ extension SearchViewController: UISearchResultsUpdating {
                 DispatchQueue.main.async {
                     self.albums = searchResult?.albums
                     self.tableView.reloadData()
-                  
                 }
             }
         } else {

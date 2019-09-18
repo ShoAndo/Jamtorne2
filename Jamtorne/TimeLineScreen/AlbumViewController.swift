@@ -12,20 +12,16 @@ import StoreKit
 class AlbumViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
     let apiClient = APIClient()
     let cloudServiceController = SKCloudServiceController()
-    
     var albumID: String!
     var album: Resource?
     var albums: [Resource]?
-    
     var canMusicCatalogPlayback = false
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-      
        prepare()
     }
     func prepare() {
@@ -38,7 +34,6 @@ class AlbumViewController: UIViewController {
             }
             return
         }
-            
         self.cloudServiceController.requestCapabilities { capabilities, error in
             guard capabilities.contains(.musicCatalogPlayback) else { return }
             self.canMusicCatalogPlayback = true
@@ -72,15 +67,8 @@ extension AlbumViewController:UITableViewDataSource,UITableViewDelegate{
                     cell.musicImage.image = image
                 }
             }
-         
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "toNewPost") as! NewPostViewController
-//            vc.songImage = (album!.attributes?.artwork?.imageURL(width: 220, height: 220)!.absoluteString)!
-//            print(vc.songImage as Any)
-            
-        
             return cell
         }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let track = album?.relationships!.tracks![indexPath.row]
         cell.textLabel?.text = track?.attributes?.name
@@ -96,7 +84,7 @@ extension AlbumViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  //      tableView.deselectRow(at: indexPath, animated: true)
+        
         if indexPath.section == 0 {
             return
         }else{
@@ -111,13 +99,7 @@ extension AlbumViewController:UITableViewDataSource,UITableViewDelegate{
             print(track.attributes?.releaseDate! as Any)
             vc.songImage = (album!.attributes?.artwork?.imageURL(width: 150, height: 150)!.absoluteString)!
             self.present(vc, animated: true, completion: nil)
-            
-            
-           
         }
-        
-//        performSegue(withIdentifier: "toNewPost", sender: album.id)
-        
     }
 }
 
@@ -127,7 +109,6 @@ class AlbumHeaderCell:UITableViewCell{
     @IBOutlet weak var songName: UILabel!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var yearlabel: UILabel!
-    
     
 }
 
