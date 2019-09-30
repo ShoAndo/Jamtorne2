@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         prepare()
     }
+    
     func prepare() {
         title = "Search"
         tableView.tableFooterView = UIView()

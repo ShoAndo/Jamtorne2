@@ -24,6 +24,8 @@ class AlbumViewController: UIViewController {
         tableView.dataSource = self
        prepare()
     }
+    
+    
     func prepare() {
         guard albumID == nil else{
             apiClient.album(id: albumID!) { [unowned self] album in
