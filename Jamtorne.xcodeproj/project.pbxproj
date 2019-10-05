@@ -34,6 +34,8 @@
 		9FBC689C2315781300DC4EBE /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC68942315781300DC4EBE /* Artwork.swift */; };
 		9FBC689D2315781300DC4EBE /* EditorialNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC68952315781300DC4EBE /* EditorialNotes.swift */; };
 		9FBC689F2316BABA00DC4EBE /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC689E2316BABA00DC4EBE /* AlbumViewController.swift */; };
+		9FCD1EB923426EB40035E8D8 /* ViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD1EB823426EB40035E8D8 /* ViewReactor.swift */; };
+		9FCD1EBB23426ECA0035E8D8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD1EBA23426ECA0035E8D8 /* View.swift */; };
 		9FFB61D9231F65CE0056DEF8 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61D8231F65CE0056DEF8 /* NewCommentViewController.swift */; };
 		9FFB61E823266AAB0056DEF8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61E723266AAB0056DEF8 /* LoginViewController.swift */; };
 		9FFB61EA23266ABA0056DEF8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB61E923266ABA0056DEF8 /* NotificationViewController.swift */; };
@@ -74,6 +76,8 @@
 		9FBC68942315781300DC4EBE /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		9FBC68952315781300DC4EBE /* EditorialNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorialNotes.swift; sourceTree = "<group>"; };
 		9FBC689E2316BABA00DC4EBE /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		9FCD1EB823426EB40035E8D8 /* ViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReactor.swift; sourceTree = "<group>"; };
+		9FCD1EBA23426ECA0035E8D8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		9FFB61D8231F65CE0056DEF8 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		9FFB61E723266AAB0056DEF8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9FFB61E923266ABA0056DEF8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +153,7 @@
 		9F46C4CE230D6F5B0005DCEA /* TimeLineScreen */ = {
 			isa = PBXGroup;
 			children = (
-				9F46C4BA230D65250005DCEA /* ViewController.swift */,
+				9FCD1EBC23426ED30035E8D8 /* ViewScreen */,
 				9F46C4CA230D6F440005DCEA /* PostTableTableViewCell.swift */,
 				9F46C4CB230D6F440005DCEA /* PostTableTableViewCell.xib */,
 				9FBC687723156B2A00DC4EBE /* SearchViewController.swift */,
@@ -202,6 +206,16 @@
 			);
 			name = Model;
 			path = "サンプル/Model";
+			sourceTree = "<group>";
+		};
+		9FCD1EBC23426ED30035E8D8 /* ViewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9F46C4BA230D65250005DCEA /* ViewController.swift */,
+				9FCD1EB823426EB40035E8D8 /* ViewReactor.swift */,
+				9FCD1EBA23426ECA0035E8D8 /* View.swift */,
+			);
+			path = ViewScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,10 +364,12 @@
 				9FFB61F0232899270056DEF8 /* JamtorneViewController.swift in Sources */,
 				9FFB61EA23266ABA0056DEF8 /* NotificationViewController.swift in Sources */,
 				9F9B168F231ED967009F30F5 /* CommentViewController.swift in Sources */,
+				9FCD1EB923426EB40035E8D8 /* ViewReactor.swift in Sources */,
 				9FBC68962315781300DC4EBE /* Attributes.swift in Sources */,
 				9FFB61D9231F65CE0056DEF8 /* NewCommentViewController.swift in Sources */,
 				9FBC689D2315781300DC4EBE /* EditorialNotes.swift in Sources */,
 				9FFB61EC23266ACA0056DEF8 /* HomeViewController.swift in Sources */,
+				9FCD1EBB23426ECA0035E8D8 /* View.swift in Sources */,
 				9FFB61E823266AAB0056DEF8 /* LoginViewController.swift in Sources */,
 				9FBC68992315781300DC4EBE /* PlayParameters.swift in Sources */,
 				9F46C4B9230D65250005DCEA /* AppDelegate.swift in Sources */,

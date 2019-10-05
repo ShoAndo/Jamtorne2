@@ -23,7 +23,7 @@ class APIClient {
         return cache
     }()
     
-    static let developerToken =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjNKREg5UlZNRFUifQ.eyJpc3MiOiJSMzNMOU43VUNEIiwiZXhwIjoxNTY5OTAyOTE3LCJhdWQiOiJhcHBzdG9yZWNvbm5lY3QtdjEifQ.NnVYX-IR7jw7ZpKBW-u8gIPm4Nv93MXro634fdwwSkVvoH46g1HUqT-iQdzv77LYYtvtM_DkexmEVQb995kraA"
+    static let developerToken =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjNKREg5UlZNRFUifQ.eyJpc3MiOiJSMzNMOU43VUNEIiwiZXhwIjoxNTcwMzQxMjg0LCJhdWQiOiJhcHBzdG9yZWNvbm5lY3QtdjEifQ.5GLt8AOIqKX5oMTUAVWVuHIxfS0dQrQBhGS160YB3t-oQh6huGAi8YGx5bsQcA6LtHx4hZdez2l7WDhaKseBTg"
     
     static let countryCode = "jp"
     

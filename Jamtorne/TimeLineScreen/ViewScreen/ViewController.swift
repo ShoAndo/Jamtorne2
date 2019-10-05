@@ -12,29 +12,44 @@ import Floaty
 import Firebase
 import FirebaseFirestore
 
+import RxCocoa
+import ReactorKit
+import RxSwift
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController{
+   
     var posts:[Post] = []{
         didSet{
-            tableView.reloadData()
+//            tableView.reloadData()
             print(posts)
         }
     }
     var user : User!
     var documentId = ""
     var postDocumentId = ""
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var tableView: UITableView!
     let cloudServiceController = SKCloudServiceController()
+    let disposeBag = DisposeBag()
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "PostTableTableViewCell", bundle: nil), forCellReuseIdentifier: "PostCell")
+//        tableView.delegate = self
+//        tableView.dataSource = (self as! UITableViewDataSource)
+//        tableView.register(UINib(nibName: "PostTableTableViewCell", bundle: nil), forCellReuseIdentifier: "PostCell")
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .white
         title = "タイムライン"
         createButton()
+        
+       
+        
+//        elements.asDriver().drive(tableView.rx_itemsWithCellIdentifier("Cell", cellType: PostTableTableViewCell.self)) { _, timeline, cell in
+//                    cell.timeline = timeline
+//                }
+//        .addDisposableTo(disposeBag)
+
+        
     }
     
     private func createButton(){
@@ -79,7 +94,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController:UITableViewDataSource,UITableViewDelegate{
+/*extension ViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
         
@@ -98,4 +113,5 @@ extension ViewController: PostTableTableViewCellDelegate{
         self.performSegue(withIdentifier: "toComment", sender: post)
     }
 }
+ */
 

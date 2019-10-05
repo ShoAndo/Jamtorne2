@@ -13,4 +13,10 @@ target 'Jamtorne' do
 	pod 'Firebase/Firestore'
        	pod 'Parse'
 	pod 'FirebaseUI/Google'
+   	pod 'RxSwift', '~> 5'
+        pod 'RxCocoa', '~> 5'
+	pod 'ReactorKit'
+	pod 'ReusableKit'
+ 	pod "ESPullToRefresh"
+ 	pod "PinLayout"
 end
